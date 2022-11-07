@@ -1,38 +1,38 @@
 require.config({
     paths: {
         'marked': 'https://cdn.jsdelivr.net/npm/marked@4.2.2/lib/marked.umd.min',
-        'd3': 'https://d3js.org/d3.v7.min',
-        'd3-fetch': 'https://d3js.org/d3-fetch.v1.min',
-        'd3-dsv': 'https://cdn.jsdelivr.net/npm/d3-dsv@3.0.1/dist/d3-dsv.min'
+        'd3': 'https://d3js.org/d3.v7.min'
     }
 })
 
 
-require(['marked', 'd3', 'd3-dsv', 'd3-fetch'], function(marked, d3, d3dsv, d3fetch) {
+require(['marked', 'd3'], function(marked, d3) {
     fetch('../config.json')
         .then(response => response.json())
         .then(config => {
+            // Set title
             const title =  (config && config.title) || "Home";
             document.title = title;
             d3.select('#home-title').html(title);
+
+            // Set navigation menu
+            let listItems = d3.select('#navbarSupportedContent')
+            .append('ul')
+            .attr('class', 'navbar-nav me-auto mb-2 mb-lg-0');
+            const navigation = (config && config.navigation) || {}
+            for (key in navigation) {
+                listItems.append('li')
+                .attr('class', 'nav-item')
+                .append('a')
+                .attr('class', 'nav-link active')
+                .attr('href', navigation[key])
+                .text(key);
+            }
         });
 
-    const home = '../pages/index.md';
-    let tree = {};
+    const home = '../content/home.md';
 
     renderMarkdownPage(home);
-
-    d3fetch.html('../pages')
-        .then(function(data) {
-            console.log('Files');
-            [].map.call(data.querySelectorAll("a.icon-text"), el => {
-                console.log(el);
-            });
-            console.log('Directories');
-            [].map.call(data.querySelectorAll("a.icon-directory"), el => {
-                console.log(el);
-            });
-        });
 
     function locationHashChanged() {
         if (location.hash.length > 0) {
@@ -52,13 +52,5 @@ require(['marked', 'd3', 'd3-dsv', 'd3-fetch'], function(marked, d3, d3dsv, d3fe
                 d3.select('#content').html(marked.parse(data));
             })
             .catch(err => console.error(err));
-    }
-
-    function parseDirectoryStructure(homeLocation) {
-        fetch(homeLocation)
-            .then(response => response.text())
-            .then(data => {
-                console.log(data);
-            });
     }
 });

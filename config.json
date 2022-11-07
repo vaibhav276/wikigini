@@ -1,3 +1,7 @@
 {
-    "title": "My Home"
+    "title": "My Home",
+    "navigation": {
+        "Section 1": "#!content/section1.md",
+        "Section 2": "#!content/section2.md"
+    }
 }

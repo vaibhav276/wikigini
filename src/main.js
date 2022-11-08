@@ -44,7 +44,7 @@ require(['marked', 'd3'], function(marked, d3) {
             document.getElementsByTagName('head')[0].appendChild(styleElement);
             let themeStyle = (config && config.themeStyle) || 'primary';
             d3.select('#navbar')
-                .classed('navbar-' + (themeStyle === 'primary' ? 'dark' : 'light'), true)
+                .classed('navbar-' + (themeStyle === 'primary' ? 'dark' : themeStyle), true)
                 .classed('bg-' + themeStyle , true);
 
             renderMarkdownPage(home, function() {

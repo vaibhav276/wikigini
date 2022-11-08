@@ -1,3 +1,3 @@
-# Index page
+# Home page
 
 My Home page

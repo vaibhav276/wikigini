@@ -3,5 +3,7 @@
     "navigation": {
         "Section 1": "#!content/section1.md",
         "Section 2": "#!content/section2.md"
-    }
+    },
+    "themeName": "journal",
+    "themeStyle": "light"
 }

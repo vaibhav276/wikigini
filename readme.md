@@ -17,5 +17,8 @@ A minimalistic wiki generator that uses markdown files as database and 100% clie
 |themeName|Theme name from https://bootswatch.com/|
 |themeStyle|Corresponding style for selected theme|
 
+## Example/Demo (this repo)
+https://vaibhav276.github.io/wikigini/
+
 ## Credits
 Inspired from [MDWiki](http://dynalon.github.io/mdwiki/#!index.md)

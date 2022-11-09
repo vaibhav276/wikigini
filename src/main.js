@@ -47,10 +47,10 @@ require(['marked', 'd3'], function(marked, d3) {
                 .classed('navbar-' + (themeStyle === 'primary' ? 'dark' : themeStyle), true)
                 .classed('bg-' + themeStyle , true);
 
-            renderMarkdownPage(home, function() {
-                window.onhashchange = locationHashChanged;
-            });
-        });
+            window.onhashchange = locationHashChanged;
+            locationHashChanged(); // To render deep link
+        })
+        .catch(err => console.error(err));
 
     function locationHashChanged() {
         if (location.hash.length > 0) {

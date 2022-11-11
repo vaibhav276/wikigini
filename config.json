@@ -1,9 +1,9 @@
 {
     "title": "My Home",
     "navigation": {
-        "Section 1": "#!content/section1.md",
-        "Section 2": "#!content/section2.md"
+        "Section 1": "#!content/section1/index.md",
+        "Section 2": "#!content/section2/index.md"
     },
-    "themeName": "journal",
+    "themeName": "materia",
     "themeStyle": "light"
 }

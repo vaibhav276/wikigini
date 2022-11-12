@@ -67,6 +67,11 @@ require(['marked', 'd3'], function(marked, d3) {
         if (breadcrumbs.length > 3) {
             breadcrumbs = breadcrumbs.slice(1, breadcrumbs.length - 1);
 
+            breadCrumbs = breadCrumbs.append('nav')
+                .attr('aria-label', 'breadcrumb')
+                .append('ol')
+                .attr('class', 'breadcrumb');
+
             const links = breadCrumbLinks(breadcrumbs);
             for (let i = 0; i < breadcrumbs.length - 1; i++) {
                 breadCrumbs.append('li')
@@ -74,11 +79,11 @@ require(['marked', 'd3'], function(marked, d3) {
                     .append('a')
                     .attr('class', 'link')
                     .attr('href', links[i])
-                    .text(breadCrumbText(breadcrumbs[i]));
+                    .text(breadcrumbs[i].replaceAll('_', ' '));
             }
             breadCrumbs.append('li')
                 .attr('class', 'breadcrumb-item')
-                .text(breadCrumbText(breadcrumbs[breadcrumbs.length - 1]));
+                .text(breadcrumbs[breadcrumbs.length - 1].replaceAll('_', ' '));
         } 
         fetch(url)
             .then(response => response.text())
@@ -89,12 +94,6 @@ require(['marked', 'd3'], function(marked, d3) {
             .catch(err => console.error(err));
     }
 
-    function breadCrumbText(name) {
-        let words = name.replaceAll('-', ' ')
-            .split()
-            .map(w => w[0].toUpperCase() + w.substr(1));
-        return words.join(' ');
-    }
     function breadCrumbLinks(arr) {
         let link = '#!content/'
         let ret = [];

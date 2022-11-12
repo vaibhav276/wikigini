@@ -1,8 +1,8 @@
 {
     "title": "My Home",
     "navigation": {
-        "Section 1": "#!content/section1/index.md",
-        "Section 2": "#!content/section2/index.md"
+        "Section 1": "#!content/Section_1/index.md",
+        "Section 2": "#!content/Section_2/index.md"
     },
     "themeName": "materia",
     "themeStyle": "light"
